@@ -175,14 +175,22 @@ public abstract class Sprite
 	 */
 	final void destroyTile(int xpos, int ypos)
 	{
+		//System.out.println("destroy");
 		if (!city.testBounds(xpos, ypos))
 			return;
 
 		int t = city.getTile(xpos, ypos);
 
 		if (t >= TREEBASE) {
+			if (isNuclear(t)) {
+				System.out.println("nuclear tile");
+				city.doMeltdown(xpos, ypos);
+				city.setTile(xpos, ypos, TINYEXP);
+				return;
+			}
 			if (isBridge(t)) {
 				city.setTile(xpos, ypos, RIVER);
+				System.out.println("what am i doing wrong");
 				return;
 			}
 			if (!isCombustible(t)) {

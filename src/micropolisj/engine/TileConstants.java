@@ -8,6 +8,8 @@
 
 package micropolisj.engine;
 
+import static micropolisj.engine.TileConstants.neutralizeRoad;
+
 /**
  * Contains symbolic names of certain tile values,
  * and helper functions to test tile attributes.
@@ -398,6 +400,14 @@ public class TileConstants
 		assert (tile & LOMASK) == tile;
 
 		return (tile == DIRT || (isDozeable(tile) && isCombustible(tile)));
+	}
+	
+	static boolean isNuclear(int tile)
+	{
+		assert (tile & LOMASK) == tile;
+		//int eTile = tile.getTile(1, 0);
+
+		return (tile == NUCLEAR);
 	}
 
 	/**

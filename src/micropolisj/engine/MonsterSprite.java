@@ -169,6 +169,7 @@ public class MonsterSprite extends Sprite
 
 		for (Sprite s : city.allSprites())
 		{
+			// if (checkSpriteCollision(s) && s.
 			if (checkSpriteCollision(s) &&
 				(s.kind == SpriteKind.AIR ||
 				 s.kind == SpriteKind.COP ||
