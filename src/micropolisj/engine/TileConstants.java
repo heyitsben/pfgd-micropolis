@@ -402,10 +402,11 @@ public class TileConstants
 		return (tile == DIRT || (isDozeable(tile) && isCombustible(tile)));
 	}
 	
+	
+	//BENNER: Checks if a tile is a nuclear power plant
 	static boolean isNuclear(int tile)
 	{
 		assert (tile & LOMASK) == tile;
-		//int eTile = tile.getTile(1, 0);
 
 		return (tile == NUCLEAR);
 	}

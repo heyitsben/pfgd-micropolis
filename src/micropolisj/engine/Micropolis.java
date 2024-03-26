@@ -140,6 +140,8 @@ public class Micropolis
 	int trafficMaxLocationY;
 	int pollutionMaxLocationX;
 	int pollutionMaxLocationY;
+	int populationMaxLocationX;
+	int populationMaxLocationY;
 	int crimeMaxLocationX;
 	int crimeMaxLocationY;
 	public int centerMassX;
@@ -1252,6 +1254,25 @@ public class Micropolis
 	public CityLocation getLocationOfMaxPollution()
 	{
 		return new CityLocation(pollutionMaxLocationX, pollutionMaxLocationY);
+	}
+	
+	//BENNER: returns the coordinates of the area of the city with the highest population density
+	public CityLocation getLocationOfMaxPopulation()
+	{
+		int peakX = 0;
+		int peakY = 0;
+		int peakVal = 0;
+		
+		for (int popX=0; popX<popDensity[0].length; popX++) {
+			for (int popY=0; popY<popDensity.length; popY++) {
+				if (popDensity[popX][popY] >= peakVal) {
+					peakVal = popDensity[popX][popY];
+					peakX = popX;
+					peakY = popY;
+				}
+			}
+		}
+		return new CityLocation(peakX, peakY);
 	}
 
 	static final int [] TaxTable = {
