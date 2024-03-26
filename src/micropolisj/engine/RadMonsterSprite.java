@@ -1,10 +1,4 @@
-// This file is part of MicropolisJ.
-// Copyright (C) 2013 Jason Long
-// Portions Copyright (C) 1989-2007 Electronic Arts Inc.
-//
-// MicropolisJ is free software; you can redistribute it and/or modify
-// it under the terms of the GNU GPLv3, with additional terms.
-// See the README file, included in this distribution, for details.
+//BENNER: Monster after it attacks nuclear power plant
 
 package micropolisj.engine;
 
@@ -61,7 +55,7 @@ public class RadMonsterSprite extends Sprite
 			(ypos > city.getHeight() / 2 ? 1 : 4);
 
 		this.count = 1000;
-		CityLocation p = city.getLocationOfMaxPollution();
+		CityLocation p = city.getLocationOfMaxPopulation();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
 		this.flag = false;
