@@ -153,8 +153,8 @@ public class MonsterSprite extends Sprite
 
 		assert this.frame >= 1 && this.frame <= 16;
 
-		this.x += 2*(Gx[d]);
-		this.y += 2*(Gy[d]);
+		this.x += Gx[d];
+		this.y += Gy[d];
 
 		if (this.count > 0) {
 			this.count--;

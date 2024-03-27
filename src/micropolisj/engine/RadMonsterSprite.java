@@ -147,8 +147,8 @@ public class RadMonsterSprite extends Sprite
 
 		assert this.frame >= 1 && this.frame <= 16;
 
-		this.x += Gx[d];
-		this.y += Gy[d];
+		this.x += 2*(Gx[d]);
+		this.y += 2*(Gy[d]);
 
 		if (this.count > 0) {
 			this.count--;
