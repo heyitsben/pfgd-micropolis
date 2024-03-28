@@ -1,4 +1,4 @@
-//BENNER: Monster after it attacks nuclear power plant
+//BENNER: modified monster after it attacks nuclear power plant
 
 package micropolisj.engine;
 
@@ -39,7 +39,7 @@ public class RadMonsterSprite extends Sprite
 
 	public RadMonsterSprite(Micropolis engine, int xpos, int ypos)
 	{
-		super(engine, SpriteKind.GOD);
+		super(engine, SpriteKind.RAD);
 		this.x = xpos * 16 + 8;
 		this.y = ypos * 16 + 8;
 		this.width = 48;

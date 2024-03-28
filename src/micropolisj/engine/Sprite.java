@@ -182,6 +182,7 @@ public abstract class Sprite
 		int t = city.getTile(xpos, ypos);
 
 		if (t >= TREEBASE) {
+			//BENNER: causes meltdown if a destroyed tile is nuclear
 			if (isNuclear(t)) {
 				System.out.println("nuclear tile");
 				city.doMeltdown(xpos, ypos);
@@ -190,7 +191,6 @@ public abstract class Sprite
 			}
 			if (isBridge(t)) {
 				city.setTile(xpos, ypos, RIVER);
-				System.out.println("what am i doing wrong");
 				return;
 			}
 			if (!isCombustible(t)) {
