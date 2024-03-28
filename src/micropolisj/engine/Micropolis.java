@@ -1263,8 +1263,8 @@ public class Micropolis
 		int peakY = 0;
 		int peakVal = 0;
 		
-		for (int popX=0; popX<popDensity[0].length; popX++) {
-			for (int popY=0; popY<popDensity.length; popY++) {
+		for (int popX=0; popX<popDensity.length; popX++) {
+			for (int popY=0; popY<popDensity[popX].length; popY++) {
 				if (popDensity[popX][popY] >= peakVal) {
 					peakVal = popDensity[popX][popY];
 					peakX = popX;
@@ -2339,7 +2339,8 @@ public class Micropolis
 
 	public void makeMonster()
 	{
-		MonsterSprite monster = (MonsterSprite) getSprite(SpriteKind.GOD);
+		//BENNER: temporary modification of monster code to test radMonster
+		RadMonsterSprite monster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
 		if (monster != null) {
 			// already have a monster in town
 			monster.soundCount = 1;
@@ -2366,10 +2367,11 @@ public class Micropolis
 		makeMonsterAt(getWidth()/2, getHeight()/2);
 	}
 
+	//BENNER: temporary modification of monster code to test radMonster
 	void makeMonsterAt(int xpos, int ypos)
 	{
-		assert !hasSprite(SpriteKind.GOD);
-		sprites.add(new MonsterSprite(this, xpos, ypos));
+		assert !hasSprite(SpriteKind.RAD);
+		sprites.add(new RadMonsterSprite(this, xpos, ypos));
 	}
 
 	public void makeTornado()
