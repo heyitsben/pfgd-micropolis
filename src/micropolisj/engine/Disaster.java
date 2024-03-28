@@ -18,5 +18,7 @@ public enum Disaster
 	FLOOD,
 	MELTDOWN,
 	TORNADO,
-	EARTHQUAKE;
+	EARTHQUAKE,
+	//BENNER: added new disaster type
+	RADIOACTIVE;
 }

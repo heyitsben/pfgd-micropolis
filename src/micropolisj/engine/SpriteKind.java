@@ -20,7 +20,9 @@ public enum SpriteKind
 	GOD(5,16), //monster
 	TOR(6,3),  //tornado
 	EXP(7,6),  //explosion
-	BUS(8,4);  
+	BUS(8,4),
+	//BENNER: added new sprite type for radMonster
+	RAD(9,16); //radioactive monster
 
 	public final int objectId;
 	public final int numFrames;
