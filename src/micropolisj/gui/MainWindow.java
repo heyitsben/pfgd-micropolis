@@ -600,6 +600,18 @@ public class MainWindow extends JFrame
 			}
 			}));
 		disastersMenu.add(menuItem);
+		
+		//BENNER: temporary menu item to test radioactive monster
+		menuItem = new JMenuItem(strings.getString("menu.disasters.RADIOACTIVE"));
+		setupKeys(menuItem, "menu.disasters.RADIOACTIVE");
+		menuItem.addActionListener(wrapActionListener(
+			new ActionListener() {
+			public void actionPerformed(ActionEvent ev)
+			{
+				onInvokeDisasterClicked(Disaster.RADIOACTIVE);
+			}
+			}));
+		disastersMenu.add(menuItem);
 
 		menuItem = new JMenuItem(strings.getString("menu.disasters.FIRE"));
 		setupKeys(menuItem, "menu.disasters.FIRE");
