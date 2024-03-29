@@ -55,8 +55,8 @@ public class RadMonsterSprite extends Sprite
 			(ypos > city.getHeight() / 2 ? 1 : 4);
 
 		this.count = 1000;
-		//BENNER: temporary test of getLocationOfNuclearPower
-		CityLocation p = city.getLocationOfNuclearPower();
+		//BENNER: changes destination to area of highest population density
+		CityLocation p = city.getLocationOfMaxPopulation();
 		this.destX = p.x * 16 + 8;
 		//BENNER: debugging
 		System.out.println(destX);
@@ -90,15 +90,12 @@ public class RadMonsterSprite extends Sprite
 
 				// reached destination
 
-				//BENNER: testing destination accuracy
 				if (!flag) {
 					// destination was the tile with highest population density
 					// now head for home
 					flag = true;
 					destX = origX;
 					destY = origY;
-					System.out.println("found it");
-					System.out.println(x + " " + y);
 				}
 				else {
 					// destination was origX, origY;
