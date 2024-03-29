@@ -1256,6 +1256,21 @@ public class Micropolis
 		return new CityLocation(pollutionMaxLocationX, pollutionMaxLocationY);
 	}
 	
+	//BENNER: returns the location of a nuclear power plant if there is one. if not, it returns the location of highest pollution
+	public CityLocation getLocationOfNuclearPower() {
+		for (int y = 0; y < map.length; y++) {
+			for (int x = 0; x < map[y].length; x++) {
+				int tile = getTile(x,y);
+				if (tile == NUCLEAR) {
+					System.out.println(x+" "+y);
+					return new CityLocation(x,y);
+				}
+			}
+		}
+		System.out.println(-1);
+		return new CityLocation(pollutionMaxLocationX, pollutionMaxLocationY);
+	}
+	
 	//BENNER: returns the coordinates of the area of the city with the highest population density
 	public CityLocation getLocationOfMaxPopulation()
 	{

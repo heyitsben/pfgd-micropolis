@@ -55,9 +55,13 @@ public class RadMonsterSprite extends Sprite
 			(ypos > city.getHeight() / 2 ? 1 : 4);
 
 		this.count = 1000;
-		CityLocation p = city.getLocationOfMaxPopulation();
+		//BENNER: temporary test of getLocationOfNuclearPower
+		CityLocation p = city.getLocationOfNuclearPower();
 		this.destX = p.x * 16 + 8;
+		//BENNER: debugging
+		System.out.println(destX);
 		this.destY = p.y * 16 + 8;
+		System.out.println(destY);
 		this.flag = false;
 		this.step = 1;
 	}
@@ -82,16 +86,21 @@ public class RadMonsterSprite extends Sprite
 			if (z == 0) step = 1;
 			z += step;
 
-			if (getDis(x, y, destX, destY) < 60) {
+			if (getDis(x, y, destX, destY) == 0) {
 
 				// reached destination
 
+				//BENNER: testing destination accuracy
 				if (!flag) {
 					// destination was the pollution center;
 					// now head for home
 					flag = true;
 					destX = origX;
 					destY = origY;
+					System.out.println("found it");
+					System.out.println(x + " " + y);
+					this.frame = 0;
+					return;
 				}
 				else {
 					// destination was origX, origY;
