@@ -61,7 +61,7 @@ public class MonsterSprite extends Sprite
 			(ypos > city.getHeight() / 2 ? 1 : 4);
 
 		this.count = 1000;
-		CityLocation p = city.getLocationOfMaxPollution();
+		CityLocation p = city.getLocationOfNuclearPower();
 		this.destX = p.x * 16 + 8;
 		this.destY = p.y * 16 + 8;
 		this.flag = false;
@@ -88,12 +88,12 @@ public class MonsterSprite extends Sprite
 			if (z == 0) step = 1;
 			z += step;
 
-			if (getDis(x, y, destX, destY) < 60) {
+			if (getDis(x, y, destX, destY) == 0) {
 
 				// reached destination
 
 				if (!flag) {
-					// destination was the pollution center;
+					// destination was the nuclear power plant
 					// now head for home
 					flag = true;
 					destX = origX;

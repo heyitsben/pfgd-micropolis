@@ -92,15 +92,13 @@ public class RadMonsterSprite extends Sprite
 
 				//BENNER: testing destination accuracy
 				if (!flag) {
-					// destination was the pollution center;
+					// destination was the tile with highest population density
 					// now head for home
 					flag = true;
 					destX = origX;
 					destY = origY;
 					System.out.println("found it");
 					System.out.println(x + " " + y);
-					this.frame = 0;
-					return;
 				}
 				else {
 					// destination was origX, origY;
