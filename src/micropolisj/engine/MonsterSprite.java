@@ -93,15 +93,8 @@ public class MonsterSprite extends Sprite
 				// reached destination
 
 				if (!flag) {
-					// destination was the nuclear power plant
-					// now head for home
-					flag = true;
-					destX = origX;
-					destY = origY;
-				}
-				else {
-					// destination was origX, origY;
-					// hide the sprite
+					//BENNER: replaces monster with RadMonster before removing it [IN PROGRESS]
+					makeRadMonster(this.x, this.y, this.soundCount, this.count, this.origX, this.origY);
 					this.frame = 0;
 					return;
 				}

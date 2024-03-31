@@ -2388,6 +2388,26 @@ public class Micropolis
 		assert !hasSprite(SpriteKind.RAD);
 		sprites.add(new RadMonsterSprite(this, xpos, ypos));
 	}
+	
+	public void makeRadMonster(int MonsterX, int MonsterY, int soundCount, int count, int origX, int origY)
+	{
+		//BENNER: creates RadMonster [IN PROGRESS]
+		RadMonsterSprite radMonster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
+		radMonster.soundCount = soundCount;
+		radMonster.count = count;
+		radMonster.origX = origX;
+		radMonster.origY = origY;
+		radMonster.flag = false;
+		
+		makeRadMonsterAt(MonsterX, MonsterY);
+	}
+
+	//BENNER: creates RadMonster sprite [IN PROGRESS]
+	void makeRadMonsterAt(int xpos, int ypos)
+	{
+		assert !hasSprite(SpriteKind.RAD);
+		sprites.add(new RadMonsterSprite(this, xpos, ypos));
+	}
 
 	public void makeTornado()
 	{
