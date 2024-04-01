@@ -142,6 +142,11 @@ public class Micropolis
 	int pollutionMaxLocationY;
 	int populationMaxLocationX;
 	int populationMaxLocationY;
+	
+	//BENNER: variables holding the x and y value of a nuclear power plant
+	int nuclearLocationX;
+	int nuclearLocationY;
+	
 	int crimeMaxLocationX;
 	int crimeMaxLocationY;
 	public int centerMassX;
@@ -1267,6 +1272,7 @@ public class Micropolis
 				}
 			}
 		}
+		//if no nuclear power plant
 		System.out.println(-1);
 		return new CityLocation(pollutionMaxLocationX, pollutionMaxLocationY);
 	}
@@ -2354,15 +2360,16 @@ public class Micropolis
 
 	public void makeMonster()
 	{
-		//BENNER: temporary modification of monster code to test radMonster
-		RadMonsterSprite monster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
+		//BENNER: makes monster destination nuclear power plant
+		MonsterSprite monster = (MonsterSprite) getSprite(SpriteKind.GOD);
 		if (monster != null) {
 			// already have a monster in town
 			monster.soundCount = 1;
 			monster.count = 1000;
 			monster.flag = false;
-			monster.destX = pollutionMaxLocationX;
-			monster.destY = pollutionMaxLocationY;
+			getLocationOfNuclearPower();
+			monster.destX = nuclearLocationX;
+			monster.destY = nuclearLocationY;
 			return;
 		}
 
@@ -2385,28 +2392,30 @@ public class Micropolis
 	//BENNER: temporary modification of monster code to test radMonster
 	void makeMonsterAt(int xpos, int ypos)
 	{
-		assert !hasSprite(SpriteKind.RAD);
-		sprites.add(new RadMonsterSprite(this, xpos, ypos));
+		assert !hasSprite(SpriteKind.GOD);
+		sprites.add(new MonsterSprite(this, xpos, ypos));
 	}
 	
-	public void makeRadMonster(int MonsterX, int MonsterY, int soundCount, int count, int origX, int origY)
+	public void makeRadMonster(int MonsterX, int MonsterY, int origX, int origY)
 	{
 		//BENNER: creates RadMonster [IN PROGRESS]
-		RadMonsterSprite radMonster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
-		radMonster.soundCount = soundCount;
-		radMonster.count = count;
-		radMonster.origX = origX;
-		radMonster.origY = origY;
-		radMonster.flag = false;
-		
-		makeRadMonsterAt(MonsterX, MonsterY);
+		makeRadMonsterAt(MonsterX, MonsterY, origX, origY);
+		return;
 	}
 
 	//BENNER: creates RadMonster sprite [IN PROGRESS]
-	void makeRadMonsterAt(int xpos, int ypos)
+	void makeRadMonsterAt(int xpos, int ypos, int origX, int origY)
 	{
 		assert !hasSprite(SpriteKind.RAD);
 		sprites.add(new RadMonsterSprite(this, xpos, ypos));
+		
+		RadMonsterSprite radMonster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
+		radMonster.soundCount = 1;
+		radMonster.count = 1000;
+		radMonster.origX = origX;
+		radMonster.origY = origY;
+		radMonster.flag = false;
+		return;
 	}
 
 	public void makeTornado()

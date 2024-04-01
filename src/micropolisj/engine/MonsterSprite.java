@@ -87,17 +87,17 @@ public class MonsterSprite extends Sprite
 			if (z == 2) step = -1;
 			if (z == 0) step = 1;
 			z += step;
+			
+			System.out.println("destX: " + destX);
+			System.out.println("destY: " + destY);
 
-			if (getDis(x, y, destX, destY) == 0) {
-
-				// reached destination
-
-				if (!flag) {
-					//BENNER: replaces monster with RadMonster before removing it [IN PROGRESS]
-					makeRadMonster(this.x, this.y, this.soundCount, this.count, this.origX, this.origY);
-					this.frame = 0;
-					return;
-				}
+			if (getDis(x, y, destX, destY) <=16) {
+				//BENNER: replaces monster with RadMonster before removing it [IN PROGRESS]
+				flag = true;
+				System.out.println("whyyyyyyyyy");
+				this.frame = 0;
+				city.makeRadMonster(this.x, this.y, this.origX, this.origY);
+				return;
 			}
 
 			int c = getDir(x, y, destX, destY);
