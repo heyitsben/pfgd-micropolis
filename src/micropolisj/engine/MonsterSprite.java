@@ -66,7 +66,6 @@ public class MonsterSprite extends Sprite
 		this.frame = xpos > city.getWidth() / 2 ?
 			(ypos > city.getHeight() / 2 ? 10 : 7) :
 			(ypos > city.getHeight() / 2 ? 1 : 4);
-		System.out.println("frame: " + this.frame);
 		this.origFrame = this.frame;
 
 		this.count = 1000;
@@ -83,7 +82,9 @@ public class MonsterSprite extends Sprite
 		else {
 			p = city.getLocationOfMaxPollution();
 			this.destX = p.x;
+			System.out.println("destX: " + destX);
 			this.destY = p.y;
+			System.out.println("destY: " + destY);
 			this.flag = false;
 			this.step = 1;
 		}
@@ -118,14 +119,14 @@ public class MonsterSprite extends Sprite
 				return;
 			}
 
+			System.out.println(x + " " + y + " " + destX + " " + destY);
 			int c = getDir(x, y, destX, destY);
 			c = (c - 1) / 2;   //convert to one of four basic headings
 			assert c >= 0 && c < 4;
 			
 			//BENNER: monster only wanders if rampaging is true
-			System.out.println(rampaging);
+			//System.out.println(rampaging);
 			if (rampaging) {
-				System.out.println(c!=d);
 				//BENNER: increased chances of turning
 				if ((c != d) && city.PRNG.nextInt(7) == 0) {
 					// randomly determine direction to turn
@@ -145,6 +146,7 @@ public class MonsterSprite extends Sprite
 			}
 			else {
 				//BENNER: monster goes directly to target if rampaging
+				System.out.println(c);
 				d = c;
 				if (soundCount == 0) {
 					city.makeSound(x/16, y/16, Sound.MONSTER);

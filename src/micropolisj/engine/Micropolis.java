@@ -2245,7 +2245,6 @@ public class Micropolis
 
 			if (sprite.frame == 0) {
 				sprites.remove(sprite);
-				System.out.println("removed sprite");
 			}
 		}
 	}
@@ -2389,7 +2388,6 @@ public class Micropolis
 		makeMonsterAt(getWidth()/2, getHeight()/2);
 	}
 
-	//BENNER: temporary modification of monster code to test radMonster
 	void makeMonsterAt(int xpos, int ypos)
 	{
 		assert !hasSprite(SpriteKind.GOD);
@@ -2398,12 +2396,12 @@ public class Micropolis
 	
 	public void makeRadMonster(int MonsterX, int MonsterY, int origX, int origY, int origFrame)
 	{
-		//BENNER: creates RadMonster [IN PROGRESS]
+		//BENNER: creates RadMonster
 		makeRadMonsterAt(MonsterX, MonsterY, origX, origY, origFrame);
 		return;
 	}
 
-	//BENNER: creates RadMonster sprite [IN PROGRESS]
+	//BENNER: creates RadMonster sprite
 	void makeRadMonsterAt(int xpos, int ypos, int origX, int origY, int origFrame)
 	{
 		System.out.println("called makeRadMonsterAt");

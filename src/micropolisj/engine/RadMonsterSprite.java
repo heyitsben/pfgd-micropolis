@@ -111,7 +111,7 @@ public class RadMonsterSprite extends Sprite
 			c = (c - 1) / 2;   //convert to one of four basic headings
 			assert c >= 0 && c < 4;
 
-			if ((c != d) && city.PRNG.nextInt(11) == 0) {
+			if ((c != d) && city.PRNG.nextInt(7) == 0) {
 				// randomly determine direction to turn
 				if (city.PRNG.nextInt(2) == 0) {
 					z = ND1[d];

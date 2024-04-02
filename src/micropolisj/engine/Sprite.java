@@ -184,7 +184,6 @@ public abstract class Sprite
 		if (t >= TREEBASE) {
 			//BENNER: causes meltdown if a destroyed tile is nuclear
 			if (isNuclear(t)) {
-				System.out.println("nuclear tile");
 				city.doMeltdown(xpos, ypos);
 				city.setTile(xpos, ypos, TINYEXP);
 				return;
