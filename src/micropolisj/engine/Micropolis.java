@@ -422,12 +422,12 @@ public class Micropolis
 
 	public int getWidth()
 	{
-		return map[0].length;
+		return map[0].length; //120
 	}
 
 	public int getHeight()
 	{
-		return map.length;
+		return map.length; //100
 	}
 
 	public char getTile(int xpos, int ypos)
@@ -1273,8 +1273,7 @@ public class Micropolis
 			}
 		}
 		//if no nuclear power plant
-		System.out.println(-1);
-		return new CityLocation(pollutionMaxLocationX, pollutionMaxLocationY);
+		return null;
 	}
 	
 	//BENNER: returns the coordinates of the area of the city with the highest population density
@@ -2246,6 +2245,7 @@ public class Micropolis
 
 			if (sprite.frame == 0) {
 				sprites.remove(sprite);
+				System.out.println("removed sprite");
 			}
 		}
 	}
@@ -2396,24 +2396,29 @@ public class Micropolis
 		sprites.add(new MonsterSprite(this, xpos, ypos));
 	}
 	
-	public void makeRadMonster(int MonsterX, int MonsterY, int origX, int origY)
+	public void makeRadMonster(int MonsterX, int MonsterY, int origX, int origY, int origFrame)
 	{
 		//BENNER: creates RadMonster [IN PROGRESS]
-		makeRadMonsterAt(MonsterX, MonsterY, origX, origY);
+		makeRadMonsterAt(MonsterX, MonsterY, origX, origY, origFrame);
 		return;
 	}
 
 	//BENNER: creates RadMonster sprite [IN PROGRESS]
-	void makeRadMonsterAt(int xpos, int ypos, int origX, int origY)
+	void makeRadMonsterAt(int xpos, int ypos, int origX, int origY, int origFrame)
 	{
+		System.out.println("called makeRadMonsterAt");
 		assert !hasSprite(SpriteKind.RAD);
 		sprites.add(new RadMonsterSprite(this, xpos, ypos));
 		
 		RadMonsterSprite radMonster = (RadMonsterSprite) getSprite(SpriteKind.RAD);
+		
+		radMonster.frame = origFrame;
 		radMonster.soundCount = 1;
 		radMonster.count = 1000;
 		radMonster.origX = origX;
+		System.out.println("origX: " + radMonster.origX);
 		radMonster.origY = origY;
+		System.out.println("origY: " + radMonster.origY);
 		radMonster.flag = false;
 		return;
 	}

@@ -100,6 +100,7 @@ public class RadMonsterSprite extends Sprite
 				else {
 					// destination was origX, origY;
 					// hide the sprite
+					System.out.println("reached destination");
 					this.frame = 0;
 					return;
 				}
@@ -159,9 +160,8 @@ public class RadMonsterSprite extends Sprite
 		}
 
 		int c = getChar(x, y);
-		if (c == -1 ||
-			(c == RIVER && this.count != 0 && false)
-			) {
+		if (c == -1) {
+			System.out.println("killed monster");
 			this.frame = 0; //kill zilla
 		}
 

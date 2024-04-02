@@ -23,6 +23,13 @@ public class MonsterSprite extends Sprite
 	int origY;
 	int step;
 	boolean flag; //true if the monster wants to return home
+	
+	//BENNER: added rampaging variable to control whether a monster
+	//goes directly to its destination or not
+	boolean rampaging = true;
+	
+	//BENNER: records original frame value
+	int origFrame;
 
 	//GODZILLA FRAMES
 	//   1...3 : northeast
@@ -59,13 +66,27 @@ public class MonsterSprite extends Sprite
 		this.frame = xpos > city.getWidth() / 2 ?
 			(ypos > city.getHeight() / 2 ? 10 : 7) :
 			(ypos > city.getHeight() / 2 ? 1 : 4);
+		System.out.println("frame: " + this.frame);
+		this.origFrame = this.frame;
 
 		this.count = 1000;
 		CityLocation p = city.getLocationOfNuclearPower();
-		this.destX = p.x * 16 + 8;
-		this.destY = p.y * 16 + 8;
-		this.flag = false;
-		this.step = 1;
+		//BENNER: sets destination if there is a nuclear power plant
+		if (p != null) {
+			this.destX = p.x * 16 + 8;
+			this.destY = p.y * 16 + 8;
+			this.flag = false;
+			this.step = 1;
+			rampaging = false;
+		}
+		//BENNER: sets location if there is not a nuclear power plant
+		else {
+			p = city.getLocationOfMaxPollution();
+			this.destX = p.x;
+			this.destY = p.y;
+			this.flag = false;
+			this.step = 1;
+		}
 	}
 
 	@Override
@@ -87,37 +108,41 @@ public class MonsterSprite extends Sprite
 			if (z == 2) step = -1;
 			if (z == 0) step = 1;
 			z += step;
-			
-			System.out.println("destX: " + destX);
-			System.out.println("destY: " + destY);
 
-			if (getDis(x, y, destX, destY) <=16) {
-				//BENNER: replaces monster with RadMonster before removing it [IN PROGRESS]
+			if (getDis(x, y, destX, destY) == 0) {
+				//BENNER: replaces monster with RadMonster before removing it
 				flag = true;
-				System.out.println("whyyyyyyyyy");
+				System.out.println("reached nuclear tile");
+				city.makeRadMonster(this.x/16, this.y/16, this.origX, this.origY, this.origFrame);
 				this.frame = 0;
-				city.makeRadMonster(this.x, this.y, this.origX, this.origY);
 				return;
 			}
 
 			int c = getDir(x, y, destX, destY);
 			c = (c - 1) / 2;   //convert to one of four basic headings
 			assert c >= 0 && c < 4;
+			
+			//BENNER: monster only wanders if rampaging is true
+			if (rampaging) {
+				if ((c != d) && city.PRNG.nextInt(11) == 0) {
+					// randomly determine direction to turn
+					if (city.PRNG.nextInt(2) == 0) {
+						z = ND1[d];
+					}
+					else {
+						z = ND2[d];
+					}
+					d = 4;  //transition heading
 
-			if ((c != d) && city.PRNG.nextInt(11) == 0) {
-				// randomly determine direction to turn
-				if (city.PRNG.nextInt(2) == 0) {
-					z = ND1[d];
+					if (soundCount == 0) {
+						city.makeSound(x/16, y/16, Sound.MONSTER);
+						soundCount = 50 + city.PRNG.nextInt(101);
+					}
 				}
-				else {
-					z = ND2[d];
-				}
-				d = 4;  //transition heading
-
-				if (soundCount == 0) {
-					city.makeSound(x/16, y/16, Sound.MONSTER);
-					soundCount = 50 + city.PRNG.nextInt(101);
-				}
+			}
+			else {
+				//BENNER: monster goes directly to target if rampaging
+				d = c;
 			}
 		}
 		else {
