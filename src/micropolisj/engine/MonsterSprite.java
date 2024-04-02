@@ -113,7 +113,7 @@ public class MonsterSprite extends Sprite
 				//BENNER: replaces monster with RadMonster before removing it
 				flag = true;
 				System.out.println("reached nuclear tile");
-				city.makeRadMonster(this.x/16, this.y/16, this.origX, this.origY, this.origFrame);
+				city.makeRadMonster(this.x/16, this.y/16, this.origX/16, this.origY/16, this.origFrame);
 				this.frame = 0;
 				return;
 			}
@@ -123,8 +123,11 @@ public class MonsterSprite extends Sprite
 			assert c >= 0 && c < 4;
 			
 			//BENNER: monster only wanders if rampaging is true
+			System.out.println(rampaging);
 			if (rampaging) {
-				if ((c != d) && city.PRNG.nextInt(11) == 0) {
+				System.out.println(c!=d);
+				//BENNER: increased chances of turning
+				if ((c != d) && city.PRNG.nextInt(7) == 0) {
 					// randomly determine direction to turn
 					if (city.PRNG.nextInt(2) == 0) {
 						z = ND1[d];
@@ -143,6 +146,10 @@ public class MonsterSprite extends Sprite
 			else {
 				//BENNER: monster goes directly to target if rampaging
 				d = c;
+				if (soundCount == 0) {
+					city.makeSound(x/16, y/16, Sound.MONSTER);
+					soundCount = 50 + city.PRNG.nextInt(101);
+				}
 			}
 		}
 		else {

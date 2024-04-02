@@ -93,6 +93,7 @@ public class RadMonsterSprite extends Sprite
 				if (!flag) {
 					// destination was the tile with highest population density
 					// now head for home
+					System.out.println("heading home");
 					flag = true;
 					destX = origX;
 					destY = origY;
