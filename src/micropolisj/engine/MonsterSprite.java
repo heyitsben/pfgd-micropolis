@@ -119,13 +119,11 @@ public class MonsterSprite extends Sprite
 				return;
 			}
 
-			System.out.println(x + " " + y + " " + destX + " " + destY);
 			int c = getDir(x, y, destX, destY);
 			c = (c - 1) / 2;   //convert to one of four basic headings
 			assert c >= 0 && c < 4;
 			
 			//BENNER: monster only wanders if rampaging is true
-			//System.out.println(rampaging);
 			if (rampaging) {
 				//BENNER: increased chances of turning
 				if ((c != d) && city.PRNG.nextInt(7) == 0) {

@@ -175,7 +175,6 @@ public abstract class Sprite
 	 */
 	final void destroyTile(int xpos, int ypos)
 	{
-		//System.out.println("destroy");
 		if (!city.testBounds(xpos, ypos))
 			return;
 

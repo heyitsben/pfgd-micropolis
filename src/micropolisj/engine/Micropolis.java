@@ -1267,7 +1267,6 @@ public class Micropolis
 			for (int x = 0; x < map[y].length; x++) {
 				int tile = getTile(x,y);
 				if (tile == NUCLEAR) {
-					System.out.println(x+" "+y);
 					return new CityLocation(x,y);
 				}
 			}
