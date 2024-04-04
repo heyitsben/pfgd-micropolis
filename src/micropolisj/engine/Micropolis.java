@@ -2466,32 +2466,6 @@ public class Micropolis
 			}
 		}
 	}
-	
-	//BENNER: makes a flood when and where the modified monster leaves
-	public void makeMonsterFlood(int x, int y)
-	{
-		final int [] DX = { 0, 1, 0, -1 };
-		final int [] DY = { -1, 0, 1, 0 };
-		int tile = getTile(x, y);
-		if (isRiverEdge(tile))
-		{
-			for (int t = 0; t < 4; t++) {
-				int xx = x + DX[t];
-				int yy = y + DY[t];
-				if (testBounds(xx,yy)) {
-					int c = map[yy][xx];
-					if (isFloodable(c)) {
-						setTile(xx, yy, FLOOD);
-						floodCnt = 30;
-						sendMessageAt(MicropolisMessage.FLOOD_REPORT, xx, yy);
-						floodX = xx;
-						floodY = yy;
-						return;
-					}
-				}
-			}
-		}
-	}
 
 	/**
 	 * Makes all component tiles of a zone bulldozable.
